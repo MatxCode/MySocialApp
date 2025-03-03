@@ -8,7 +8,8 @@ import { notFound } from "next/navigation";
 import ProfilePageClient from "./ProfilePageClient";
 
 export async function generateMetadata({ params }: { params: { username: string } }) {
-    const user = await getProfileByUsername(params.username);
+    const { username } = await params;
+    const user = await getProfileByUsername(username);
     if (!user) return;
 
     return {
@@ -17,10 +18,11 @@ export async function generateMetadata({ params }: { params: { username: string 
     };
 }
 
-async function ProfilePageServer({ params }: { params: { username: string } }) {
-    const user = await getProfileByUsername(params.username);
+export default async function ProfilePageServer({ params }: { params: { username: string } }) {
+    const { username } = await params;
+    const user = await getProfileByUsername(username);
 
-    if (!user) notFound();
+    if (!user) return notFound();
 
     const [posts, likedPosts, isCurrentUserFollowing] = await Promise.all([
         getUserPosts(user.id),
@@ -37,4 +39,3 @@ async function ProfilePageServer({ params }: { params: { username: string } }) {
         />
     );
 }
-export default ProfilePageServer;
