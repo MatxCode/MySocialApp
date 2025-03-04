@@ -17,7 +17,6 @@ async function Navbar() {
                             Connectify
                         </Link>
                     </div>
-
                     <DesktopNavbar />
                     <MobileNavbar />
                 </div>
