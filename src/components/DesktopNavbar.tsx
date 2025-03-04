@@ -1,9 +1,10 @@
-import { BellIcon, HomeIcon, UserIcon, Thermometer } from "lucide-react";
+import { BellIcon, HomeIcon, UserIcon, Thermometer, Newspaper } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { SignInButton, UserButton } from "@clerk/nextjs";
 import ModeToggle from "./ModeToggle";
 import { currentUser } from "@clerk/nextjs/server";
+import News from "./News";
 
 async function DesktopNavbar() {
     const user = await currentUser();
@@ -22,6 +23,12 @@ async function DesktopNavbar() {
                 <Link href="/weather">
                     <Thermometer className="w-4 h-4" />
                     <span className="hidden lg:inline">Weather</span>
+                </Link>
+            </Button>
+            <Button variant="ghost" className="flex items-center gap-2" asChild>
+                <Link href="/news">
+                    <Newspaper className="w-4 h-4" />
+                    <span className="hidden lg:inline">News</span>
                 </Link>
             </Button>
 

@@ -8,7 +8,8 @@ import {
     MoonIcon,
     SunIcon,
     UserIcon,
-    Thermometer
+    Thermometer,
+    Newspaper,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
@@ -16,6 +17,7 @@ import { useState } from "react";
 import { useAuth, SignInButton, SignOutButton } from "@clerk/nextjs";
 import { useTheme } from "next-themes";
 import Link from "next/link";
+import News from "./News";
 
 function MobileNavbar() {
     const [showMobileMenu, setShowMobileMenu] = useState(false);
@@ -56,6 +58,12 @@ function MobileNavbar() {
                             <Link href="/weather">
                                 <Thermometer className="w-4 h-4" />
                                 Weather
+                            </Link>
+                        </Button>
+                        <Button variant="ghost" className="flex items-center gap-3 justify-start" asChild>
+                            <Link href="/news">
+                                <Newspaper className="w-4 h-4" />
+                                News
                             </Link>
                         </Button>
 
